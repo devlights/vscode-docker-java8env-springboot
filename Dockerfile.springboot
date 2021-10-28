@@ -1,0 +1,7 @@
+FROM adoptopenjdk/openjdk8:alpine-slim
+
+WORKDIR /app
+COPY ./demo/target/demo.jar  /app
+
+ENTRYPOINT [ "java", "-jar", "/app/demo.jar" ]
+CMD [ "sleep", "infinity" ]
