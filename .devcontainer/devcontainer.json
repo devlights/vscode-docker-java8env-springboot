@@ -1,0 +1,56 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.202.5/containers/java-8
+{
+	"name": "Java 8",
+	"runArgs": ["--init"],
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			// Use the VARIANT arg to pick a Debian OS version: buster, bullseye
+			// Use bullseye when running on local arm64/Apple Silicon.
+			"VARIANT": "bullseye",
+			// Options
+			//   -- Maven
+			"INSTALL_MAVEN": "true",
+			"MAVEN_VERSION": "3.8.3",
+			//   -- Gradle
+			"INSTALL_GRADLE": "true",
+			"GRADLE_VERSION": "7.2",
+			//   -- Node.js
+			"NODE_VERSION": "none",
+			//   -- Spring Boot
+			"INSTALL_SPRINGBOOT": "true",
+			"SPRINGBOOT_VERSION": "2.5.6"
+		}
+	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"java.home": "/docker-java-home",
+		"java.import.gradle.java.home": "/usr/local/sdkman/candidates/java/current",
+		"java.configuration.runtimes": [{
+			"default": true,
+			"name": "JavaSE-1.8",
+			"path": "/usr/local/sdkman/candidates/java/current"
+		}]
+	},
+	
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"vscjava.vscode-java-pack",
+		"pivotal.vscode-boot-dev-pack"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "java -version",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"docker-from-docker": "20.10",
+		"git": "os-provided"
+	}
+}
